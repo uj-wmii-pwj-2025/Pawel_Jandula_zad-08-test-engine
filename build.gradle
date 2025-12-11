@@ -24,3 +24,11 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+task runTestEngine(type: JavaExec) {
+    group = 'verification'
+    description = 'Uruchamia wlasny silnik testowy'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'uj.wmii.pwj.anns.MyTestEngine'
+    // Tu podajemy nazwę klasy, którą chcemy przetestować
+    args 'uj.wmii.pwj.anns.MyBeautifulTestSuite'
+}

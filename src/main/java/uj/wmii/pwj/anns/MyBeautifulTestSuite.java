@@ -2,24 +2,41 @@ package uj.wmii.pwj.anns;
 
 public class MyBeautifulTestSuite {
 
-    @MyTest
-    public void testSoemthing() {
-        System.out.println("I'm testing something!");
+    // --- PRZYPADKI PASS ---
+
+    @MyTest(params = {"10", "5"}, results = {"100", "25"})
+    public int square(int x) {
+        return x * x;
     }
 
-    @MyTest(params = {"a param", "b param", "c param. Long, long C param."})
-    public void testWithParam(String param) {
-        System.out.printf("I was invoked with parameter: %s\n", param);
+    @MyTest(params = {"Java", "Engine"}, results = {"JAVA", "ENGINE"})
+    public String toUpper(String s) {
+        return s.toUpperCase();
     }
 
-    public void notATest() {
-        System.out.println("I'm not a test.");
+    // --- PRZYPADKI FAIL ---
+
+    @MyTest(params = {"2", "3"}, results = {"4", "10"}) // FAIL
+    public int squareFail(int x) {
+        return x * x;
     }
 
-    @MyTest
-    public void imFailue() {
-        System.out.println("I AM EVIL.");
-        throw new NullPointerException();
+    @MyTest(params = {"true"}, results = {"false"}) // nie fail
+    public boolean negate(boolean b) {
+        return !b;
     }
 
+    // --- PRZYPADKI ERROR ---
+
+    @MyTest(params = {"some text"})
+    public void boom(String s) {
+        throw new RuntimeException("Something exploded!");
+    }
+    
+    // --- BEZ PARAMETRÓW ---
+    
+    @MyTest(results = {"7"})
+    public int returnSeven() {
+        return 7;
+    }
 }

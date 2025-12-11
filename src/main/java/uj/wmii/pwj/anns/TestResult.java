@@ -1,5 +1,7 @@
 package uj.wmii.pwj.anns;
 
 public enum TestResult {
-    SUCCESS, FAIL
+    PASS,   
+    FAIL,   
+    ERROR   
 }
